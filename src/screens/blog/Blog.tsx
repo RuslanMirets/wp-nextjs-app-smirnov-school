@@ -12,10 +12,7 @@ import Heading from "@/src/ui/heading/Heading";
 import { useQuery } from "@tanstack/react-query";
 
 const Blog = () => {
-	const { data, isLoading, isFetching, error } = useQuery(
-		["posts"],
-		PostService.getAll,
-	);
+	const { data, isLoading, isError } = useQuery(["posts"], PostService.getAll);
 
 	const posts: IPosts[] = data?.data.posts.nodes;
 
@@ -25,17 +22,15 @@ const Blog = () => {
 		<section>
 			<Container>
 				<Heading>Блог</Heading>
-				{error ? (
-					<p>О нет, произошла ошибка</p>
-				) : isLoading || isFetching ? (
-					<Loader />
-				) : data ? (
+				{isError && <div>О нет, произошла ошибка</div>}
+				{isLoading && <Loader />}
+				{data && (
 					<>
 						<RequestTime requestTime={requestTime} />
 						<SearchForm />
 						<PostsList posts={posts} />
 					</>
-				) : null}
+				)}
 			</Container>
 		</section>
 	);
