@@ -15,7 +15,7 @@ interface IMenuLinks {
 
 const menuLinks: IMenuLinks[] = [
 	{ title: "Главная", url: "/" },
-	// { title: "Блог", url: "/blog" },
+	{ title: "Блог", url: "/blog" },
 	// { title: "Основы CG", url: "/cgb" },
 	// { title: "Товары", url: "/products" },
 	// { title: "Курсы", url: "/courses" },
